@@ -7,6 +7,6 @@
   },
   "dependencies": {
     "htmlparser2": "^3.8.2",
-    "react-native": "^0.3.1"
+    "react-native": "^0.12.0"
   }
 }

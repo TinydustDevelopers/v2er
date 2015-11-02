@@ -4,8 +4,7 @@ var React = require('react-native');
 var {
 	Text,
 	View,
-	ListView,
-	NetInfo
+	ListView
 } = React;
 
 var Style = require('./StyleSheet');
@@ -29,28 +28,9 @@ var TopicList = React.createClass({
 	},
 	componentDidMount: function(){
 		this.fetchData();
-		NetInfo.reachabilityIOS.fetch().done((reach) => {
-			console.log('Initial: ' + reach);
-			if(reach !== 'cell' ){
-				this.setState({
-					showImg: true
-				});
-			}
+		this.setState({
+			showImg: true
 		});
-		function handleFirstReachabilityChange(reach) {
-			console.log('First change: ' + reach);
-			if(reach !== 'cell'){
-				this.setState({
-					showImg: true
-				});
-			} else {
-				this.setState({
-					showImg: false
-				});
-			}
-			NetInfo.reachabilityIOS.removeEventListener('change',handleFirstReachabilityChange);
-		}
-		NetInfo.reachabilityIOS.addEventListener('change',handleFirstReachabilityChange.bind(this));
 	},
 	fetchData: function(){
 		this.setState({
@@ -107,7 +87,7 @@ var TopicList = React.createClass({
 				}
 				showImg={this.state.showImg}
 				data={data} />
-		); 
+		);
 	},
 	renderFooterLoading: function(){
 		if(this.state.pageLoaded){
